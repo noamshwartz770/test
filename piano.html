@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f7f7f7;
+        }
+
+        .piano {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0;
+            margin: 0;
+        }
+
+        .key {
+            width: 40px;
+            height: 150px;
+            margin: 1px;
+            border: 1px solid #ccc;
+            background: white;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .black-key {
+            width: 25px;
+            height: 100px;
+            background: black;
+            position: absolute;
+            left: 25px;
+            z-index: 1;
+            margin-left: -12.5px;
+        }
+
+        .key:active {
+            background-color: #e0e0e0;
+        }
+
+        .black-key:active {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Piano</h1>
+    <div class="piano">
+        <div class="key" data-note="C"></div>
+        <div class="black-key" data-note="C#"></div>
+        <div class="key" data-note="D"></div>
+        <div class="black-key" data-note="D#"></div>
+        <div class="key" data-note="E"></div>
+        <div class="key" data-note="F"></div>
+        <div class="black-key" data-note="F#"></div>
+        <div class="key" data-note="G"></div>
+        <div class="black-key" data-note="G#"></div>
+        <div class="key" data-note="A"></div>
+        <div class="black-key" data-note="A#"></div>
+        <div class="key" data-note="B"></div>
+        <div class="key" data-note="C2"></div>
+    </div>
+
+    <script>
+        const keyElements = document.querySelectorAll('.key, .black-key');
+        
+        keyElements.forEach(key => {
+            key.addEventListener('click', () => {
+                const note = key.getAttribute('data-note');
+                playSound(note);
+            });
+        });
+
+        function playSound(note) {
+            const audio = new Audio(`sounds/${note}.mp3`);
+            audio.play();
+        }
+    </script>
+</body>
+</html>
